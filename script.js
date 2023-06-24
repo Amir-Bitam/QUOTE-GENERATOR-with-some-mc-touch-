@@ -3,6 +3,7 @@ const quoteElement = document.getElementById("quote");
 const authorElement = document.getElementById("author");
 const newQuoteButton = document.getElementById("new-quote");
 const favoritesList = document.getElementById("favorites-list");
+const favButton = document.getElementById("favorite-btn")
 
 // JSON data with quotes zethom men 3endi ykono fun principalement special b mc
 const customQuotes = [
@@ -45,6 +46,9 @@ const customQuotes = [
   { quote: "semhouli khawti mais ntouma hayawanat", author: "MAHDI OPS : )" },
   { quote: "Li yhabek yhabek b cringek", author: "Kamie" },
   { quote: "cha tgoli ??", author: "haru" },
+  { quote: "7yatek", author: "MC members" },
+  { quote: "Multimedia ta3i", author: "Sameleon The Godfather of Multimedia" },
+  { quote: "Multimedia wadna w ndiro rayna", author: "الأحمر" },
 ];
 
 // Fetch a random quote from the API kont ndor f chat te3 training 9rit wa7ed dar b api I said why not
@@ -56,6 +60,7 @@ async function fetchRandomQuote() {
 
 // Generate a random quote from either the custom quotes or the API but.... rani hab quotes taw3i ybano kter donc jai fais en sorte que the rate of apperance te3 quotes te3 la list 60% et api 40%
 async function generateRandomQuote() {
+
   const randomIndex = Math.floor(Math.random() * 10);
   if (randomIndex < 6) {
     return customQuotes[Math.floor(Math.random() * customQuotes.length)];
@@ -90,31 +95,24 @@ newQuoteButton.addEventListener("click", async () => {
 });
 
 // Add the current quote to favorites
-quoteElement.addEventListener("click", () => {
+favButton.addEventListener("click", () => {
   const quoteText = quoteElement.textContent.trim();
   const authorText = authorElement.textContent.trim();
 
   // Check if the quote is already in favorites
   const isQuoteInFavorites = Array.from(favoritesList.children).some((item) =>
-    item.textContent.includes(quoteText)
-  );
+  item.textContent.includes(quoteText)
+);
 
-  if (!isQuoteInFavorites) {
-    const favoriteQuote = document.createElement("li");
-    favoriteQuote.textContent = `${quoteText} ${authorText}`;
-    favoritesList.appendChild(favoriteQuote);
-  }
-});
+if (!isQuoteInFavorites) {
+  const favoriteQuote = document.createElement("li");
+  favoriteQuote.textContent = `${quoteText} ${authorText}`;
+  favoritesList.appendChild(favoriteQuote);
+}
+})
 
-// Add current quote to favorites by clicking the star icon
-favoriteBtn.addEventListener("click", () => {
-  favoriteBtn.querySelector("i").classList.toggle("fa-star-yellow");
-  const quote = document.getElementById("quote").textContent;
-  const author = document.getElementById("author").textContent;
-  const favoriteItem = document.createElement("li");
-  favoriteItem.classList.add("favorite-quote");
-  favoriteItem.textContent = "${quote}"`- ${author}`;
-  document.getElementById("favorites-list").appendChild(favoriteItem);
-});
 
-//bon j'ai eu un probleme win pour une raison l'etoile quand on appuis dessus ca marche pas tsema reja3t tu appuis 3la la quote elle meme bch tzid ka list te3 les favori
+
+
+
+
